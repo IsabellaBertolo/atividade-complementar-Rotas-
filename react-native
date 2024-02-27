@@ -1,0 +1,69 @@
+import React from 'react';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+
+// Página inicial
+const HomeScreen = ({ navigation }) => (
+  <View style={styles.container}>
+    <Text style={styles.heading}>Eu confio na minha amiga Geovana, porque ela esteve sempre ao meu lado</Text>
+    <Text style={styles.paragraph}>Eu desafio ela a sorrir.</Text>
+    <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('lucas')}>
+      <Text style={styles.buttonText}>Amigo Esquerda</Text>
+    </TouchableOpacity>
+  </View>
+);
+
+// Página para "Amiga Esquerda"
+const lucasPage = ({ navigation }) => (
+  <View style={styles.container}>
+    <Text style={styles.heading}>Eu confio no Professor Calu porque ele anda sempre feliz com a vida </Text>
+    <Text style={styles.paragraph}>Eu desafio ele a imitar um cachorro.</Text>
+    <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Home')}>
+      <Text style={styles.buttonText}>Amiga Direita</Text>
+    </TouchableOpacity>
+  </View>
+);
+
+const Stack = createStackNavigator();
+
+const App = () => (
+  <NavigationContainer>
+    <Stack.Navigator initialRouteName="Home">
+      <Stack.Screen name="Home" component={HomeScreen} />
+      <Stack.Screen name="lucas" component={lucasPage} />
+    </Stack.Navigator>
+  </NavigationContainer>
+);
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: 'pink', // Alterado para rosa
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 20,
+  },
+  heading: {
+    color: 'white',
+    fontSize: 24,
+    marginBottom: 10,
+  },
+  paragraph: {
+    color: 'white',
+    fontSize: 16,
+    marginBottom: 20,
+  },
+  button: {
+    backgroundColor: '#ff69b4', // Alterado para rosa
+    padding: 10,
+    borderRadius: 5,
+  },
+  buttonText: {
+    color: 'white',
+    fontSize: 16,
+  },
+});
+
+export default App;
+
